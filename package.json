@@ -1,7 +1,7 @@
 {
   "name": "use-d3-transition",
-  "version": "1.0.0",
-  "description": "A cutom React hook for transition element properties using D3. Do dynamic dataviz animations with clean, modern React (no fiddling with janky life cycle hooks!).",
+  "version": "1.0.1",
+  "description": "A custom React hook for transition element properties using D3. Do dynamic dataviz animations with clean, modern React (no fiddling with janky life cycle hooks!).",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
