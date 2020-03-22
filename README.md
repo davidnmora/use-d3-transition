@@ -51,3 +51,10 @@ Now you can use that component as you would a native SVG or HTML element, and th
 	cy={updatingYValue}
 />
 ```
+
+## API
+| property | description | type   | default  |
+|-|-|-|-|
+| **attrsToTransitionTo** | All the attributes you want to smoothly transition. <br> Form: `{ attributeName: attributeEndValue, ... }`| Object | required |
+| **deps** | Identical to React hooks deps (eg useState)| Array  | optional (technically) |
+| attrsToTransitionFromInitially | Sometimes, you might want all attributes to transition in from a specific value (eg transition circle radius in from 0). List that here for each transitioning property. <br> Form: `{ attributeName: attributeStartValue, ... }`  | Object | optional |
