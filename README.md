@@ -19,29 +19,35 @@ yarn add use-d3-transition
 
 ```js
 import React from 'react'
-import useD3AttrTransition from 'useD3AttrTransition';
+import useD3Transition from 'use-d3-transition'
 
 
-const TransitionableCircle = ({className, r, cx, cy, cxInitial, cyInitial, style, onMouseEnter, onMouseLeave}) => {
-	const {ref, attrState} = useD3AttrTransition(
-		{cx, cy},
-		[cx, cy],
-		{cx: cxInitial, cy: cyInitial}
+export const TransitionableCircle = ({cx, cy, ...restOfTheAttributes}) => {
+	const {ref, attrState} = useD3Transition(
+		{cx, cy}, // attributes to transition to smoothly
+		[cx, cy], // hook dependencies (typically identical to the attributes to transition to)
 	)
 	
 	return (
 		<circle
 			ref={ref}
-			className={className}
-			r={r}
 			cx={attrState.cx}
 			cy={attrState.cy}
-			style={style}
-			onMouseEnter={onMouseEnter}
-			onMouseLeave={onMouseLeave}
+			
+			{...restOfTheAttributes}
 		/>
 	)
 }
 
-export default TransitionableCircle
+```
+
+Now you can use that component as you would a native SVG or HTML element, and the component will automatically transition itself between attribute changes.
+
+```html
+<TransitionableCircle
+	className={'my-transitioning-circle'}
+	r={42}
+	cx={updatingXValue}
+	cy={updatingYValue}
+/>
 ```
