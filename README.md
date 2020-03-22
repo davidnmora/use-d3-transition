@@ -1,3 +1,5 @@
+![use-d3-transition-gif](https://user-images.githubusercontent.com/6570507/77262989-17c41300-6c54-11ea-98f0-4d26ba500bdf.gif)
+
 [![npm version](http://img.shields.io/npm/v/use-d3-transition.svg?style=flat)](https://npmjs.org/package/use-d3-transition "View this project on npm")
 
 # use-d3-transition
