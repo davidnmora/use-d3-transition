@@ -4,15 +4,14 @@ import {select as d3Select} from 'd3-selection';
 const DEFAULT_TRANSITION_DURATION = 800
 
 
-const useD3AttrTransition = (
-	attrsToTransitionTo,
-	deps,
-	{
-		attrsToTransitionFromInitially = null,
-		duration = null,
-		easingFunction = null,
-	},
-) => {
+const useD3AttrTransition = ({
+															 attrsToTransitionTo,
+															 deps,
+	
+															 attrsToTransitionFromInitially = null,
+															 duration = null,
+															 easingFunction = null,
+														 }) => {
 	
 	const ref = useRef(null)
 	const [attrState, setAttrState] = useState(attrsToTransitionFromInitially || attrsToTransitionTo)
