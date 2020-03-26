@@ -1,7 +1,19 @@
 import {useRef, useEffect, useState} from 'react'
 import {select as d3Select} from 'd3-selection';
 
-const useD3AttrTransition = (attrsToTransitionTo, deps, attrsToTransitionFromInitially = null) => {
+const DEFAULT_TRANSITION_DURATION = 800
+
+
+const useD3AttrTransition = (
+	attrsToTransitionTo,
+	deps,
+	{
+		attrsToTransitionFromInitially = null,
+		duration = null,
+		easingFunction = null,
+	},
+) => {
+	
 	const ref = useRef(null)
 	const [attrState, setAttrState] = useState(attrsToTransitionFromInitially || attrsToTransitionTo)
 	
@@ -9,7 +21,14 @@ const useD3AttrTransition = (attrsToTransitionTo, deps, attrsToTransitionFromIni
 		if (!ref.current) return
 		
 		const element = d3Select(ref.current);
-		const transition = element.transition().duration(1000)
+		const transition = element
+			.transition()
+			.duration(typeof(duration) === 'number' ? duration : DEFAULT_TRANSITION_DURATION)
+		
+		if (easingFunction) {
+			transition.ease(easingFunction)
+		}
+		
 		const attrNames = Object.keys(attrState)
 		
 		attrNames.forEach(attrName => {
