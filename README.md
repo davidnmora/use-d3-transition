@@ -2,8 +2,10 @@
 
 [![npm version](http://img.shields.io/npm/v/use-d3-transition.svg?style=flat)](https://npmjs.org/package/use-d3-transition "View this project on npm")
 
-# use-d3-transition
-A custom React hook for transition element properties using D3. Do dynamic dataviz animations with clean, modern React (no fiddling with janky life cycle hooks!)
+# use-d3-transition: _React animations for building stuff fast_
+A custom React hook for transition animations using D3. Perfect for complex data visusalization projects that need composability.
+
+No refactors. No messy class-based lifecycle hooks. Just dynamic animations and clean, modern React. :sunglasses:
 
 This hook was inspired by Swizec Teller's blogpost, [Declarative D3 transitions with React 16.3](https://swizec.com/blog/declarative-d3-transitions-react/swizec/8323)
 
@@ -11,9 +13,7 @@ This hook was inspired by Swizec Teller's blogpost, [Declarative D3 transitions 
 
 ```sh
 npm install use-d3-transition
-```
-or with yarn
-```sh
+# or yarn:
 yarn add use-d3-transition
 ```
 
@@ -57,17 +57,19 @@ Now you can use that component as you would a native SVG or HTML element, and th
 ```
 
 ## API
-| property | description | type   | required?  |
-|-|-|-|-|
-| **attrsToTransitionTo** | All the attributes you want to smoothly transition. <br> Form: `{ attributeName: attributeEndValue, ... }`| Object | required |
-| **deps** | Identical to `deps` parameter in other React hooks (eg `useMemo`, `useEffect`)| Array | optional (technically) |
-| attrsToTransitionFromInitially | Sometimes, you might want all attributes to transition in from a specific value <br>(eg transition circle radius in from 0).<br> List those start values here for each transitioning property. <br> Form: `{ attributeName: attributeStartValue, ... }`  | Object | optional |
-| duration | Transition duration, in ms | Number | optional |
-| easingFunction | [A D3 easing function](https://github.com/d3/d3-ease) to fine tune the transition's progression | Number | optional |
+
+| property | description | type | default | required?  |
+|-|-|-|-|-|
+| **attrsToTransitionTo** | All the attributes you want to smoothly transition. <br> Form: `{ attributeName: attributeEndValue, ... }`| Object | - | required |
+| **deps** | Identical to `deps` parameter in other React hooks (eg `useMemo`, `useEffect`)| Array | - | optional (technically) |
+| attrsToTransitionFromInitially | Sometimes, you might want all attributes to transition in from a specific value <br>(eg transition circle radius in from 0).<br> List those start values here for each transitioning property. <br> Form: `{ attributeName: attributeStartValue, ... }`  | Object | `attrsToTransitionTo` | optional |
+| duration | Transition duration, in ms | Number | 800 | optional |
+| easingFunction | [A D3 easing function](https://github.com/d3/d3-ease) to fine tune the transition's progression | Function | [d3.easeCubic](https://github.com/d3/d3-ease#easeCubic) | optional |
 
 ## Technical Implementation
 
-### TLDR: useD3Transition hands off updating the node's DOM attributes to D3 during the transition, then hands control back to React when the transition finishes.
+### TLDR: 
+`useD3Transition` hands off updating the node's DOM attributes to D3 during the transition, then hands control back to React when the transition finishes.
 
 ### Practical example: transitioning a circle radius
 Let's say we're updating the value of an SVG `circle`'s attribute `r` (radius) from 0 to 100. The initial value passedin is 0.
