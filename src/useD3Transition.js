@@ -1,6 +1,6 @@
 import {useRef, useEffect, useState} from 'react'
-import { selection, select as d3Select } from 'd3-selection' // eslint-disable-line
-import {transition as d3Transition} from 'd3-transition'
+import {select as d3Select} from 'd3-selection'
+import 'd3-transition';
 
 const DEFAULT_TRANSITION_DURATION = 800
 
@@ -20,15 +20,15 @@ const useD3AttrTransition = ({
 	const callback = () => {
 		if (!ref.current) return
 		
-		// 1. Create/apply Transition
-		const transition = d3Transition()
+		const element = d3Select(ref.current);
+		const transition = element
+			.transition()
 			.duration(typeof(duration) === 'number' ? duration : DEFAULT_TRANSITION_DURATION)
 		
 		if (easingFunction) {
 			transition.ease(easingFunction)
 		}
 		
-		// 2. Specify attributes
 		const attrNames = Object.keys(attrState)
 		
 		attrNames.forEach(attrName => {
@@ -49,11 +49,6 @@ const useD3AttrTransition = ({
 				)
 			)
 		})
-		
-		// Apply transition
-		const element = d3Select(ref.current)
-		element.transition(transition)
-		
 		return () => element.interrupt() // cleanup by ending transitions
 	}
 	
