@@ -1,5 +1,6 @@
 import {useRef, useEffect, useState} from 'react'
-import {select as d3Select} from 'd3-selection';
+import { selection, select as d3Select } from 'd3-selection' // eslint-disable-line
+import 'd3-transition';
 
 const DEFAULT_TRANSITION_DURATION = 800
 

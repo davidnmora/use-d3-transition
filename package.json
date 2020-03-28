@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/davidnmora/use-d3-transition#readme",
   "dependencies": {
-    "d3-selection": "^1.4.1",
+    "d3-selection": "1.4.0",
     "react": "^16.8.0"
   }
 }
