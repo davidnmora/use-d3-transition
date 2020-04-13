@@ -2,22 +2,29 @@ import { useRef, useEffect, useState } from 'react'
 import { select as d3Select } from 'd3-selection'
 import 'd3-transition'
 
+interface StringIndexedObject { [key: string]: any; }
+
 const DEFAULT_TRANSITION_DURATION = 800
 
 const useD3Transition = ({
   attrsToTransitionTo,
   deps,
-
-  attrsToTransitionFromInitially = null,
-  duration = null,
-  easingFunction = null,
-}) => {
+  attrsToTransitionFromInitially,
+  duration,
+  easingFunction,
+} : {
+  attrsToTransitionTo: StringIndexedObject,
+  deps?: Array<any>,
+  attrsToTransitionFromInitially?: StringIndexedObject,
+  duration?: number,
+  easingFunction?: Function,
+}) : StringIndexedObject => {
   const ref = useRef(null)
   const [attrState, setAttrState] = useState(
     attrsToTransitionFromInitially || attrsToTransitionTo
   )
 
-  const executeD3Transition = () => {
+const executeD3Transition = (): VoidFunction | void => {
     if (!ref.current) return
 
     const element = d3Select(ref.current)
@@ -28,6 +35,7 @@ const useD3Transition = ({
       )
 
     if (easingFunction) {
+      // @ts-ignore
       transition.ease(easingFunction)
     }
 
