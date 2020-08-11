@@ -39,7 +39,7 @@ const useD3Transition = ({
 
     transition.on('end', () => {
       if (!ref.current) return
-      setAttrState(attrNames)
+      setAttrState(attrsToTransitionTo)
     })
     return () => element.interrupt() // cleanup by ending transitions
   }
