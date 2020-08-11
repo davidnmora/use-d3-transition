@@ -7,7 +7,6 @@ const DEFAULT_TRANSITION_DURATION = 800
 const useD3Transition = ({
   attrsToTransitionTo,
   deps,
-
   attrsToTransitionFromInitially = null,
   duration = null,
   easingFunction = null,
