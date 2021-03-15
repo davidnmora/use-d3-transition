@@ -7,7 +7,6 @@ const DEFAULT_TRANSITION_DURATION = 800
 const useD3Transition = ({
   attrsToTransitionTo,
   deps,
-
   attrsToTransitionFromInitially = null,
   duration = null,
   easingFunction = null,
@@ -39,7 +38,7 @@ const useD3Transition = ({
 
     transition.on('end', () => {
       if (!ref.current) return
-      setAttrState(attrNames)
+      setAttrState(attrsToTransitionTo)
     })
     return () => element.interrupt() // cleanup by ending transitions
   }
